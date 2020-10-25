@@ -17,7 +17,10 @@ export function Gallery({ movieData }: { movieData: MovieData[] }) {
     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-auto">
       {movieData.map((md) => {
         return (
-          <div className="relative max-w-sm rounded overflow-hidden shadow-lg">
+          <div
+            key={md.id}
+            className="relative max-w-sm rounded overflow-hidden shadow-lg"
+          >
             <div className="bg-gray-400">
               <img
                 src={`https://image.tmdb.org/t/p/original${md.poster_path}`}
@@ -34,6 +37,7 @@ export function Gallery({ movieData }: { movieData: MovieData[] }) {
                 title={md.title}
                 releaseYear={dayjs().year() - dayjs(md.release_date).year()}
                 releaseDate={dayjs(md.release_date).format("MM月DD日")}
+                id={md.id}
               />
             </div>
           </div>
@@ -47,14 +51,16 @@ function TweetButton({
   title,
   releaseYear,
   releaseDate,
+  id,
 }: {
   title: string;
   releaseYear: number;
   releaseDate: string;
+  id: number;
 }) {
   return (
     <a
-      href={`https://twitter.com/intent/tweet?text=${title} は ${releaseYear} 年前の ${releaseDate} 公開!`}
+      href={`https://twitter.com/intent/tweet?text=${title}は${releaseYear}年前の${releaseDate}公開!&url=https://www.themoviedb.org/movie/${id}`}
       className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold m-2 p-2 rounded"
     >
       tweet
