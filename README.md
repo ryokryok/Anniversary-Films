@@ -1,6 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# anniversary films
+
+This is my project app, search anniversary films by date.
 
 ## Getting Started
+
+### First
+
+This app uses [TMDb API](https://developers.themoviedb.org/3/getting-started/introduction), if you will build app, you need to get API KEY.
+
+And, set up `.env.local` file.
+
+```bash
+mv .env.sample .env.local
+```
+
+```env
+NEXT_PUBLIC_TMDB_API_KEY=<input your api key>
+```
+
+
+### Dev server
 
 First, run the development server:
 
@@ -10,21 +29,21 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
+### Static Export
 
-To learn more about Next.js, take a look at the following resources:
+This app is client side only, dose not need server side app.
+if you build this app to deploy static html server, execute this command.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# execute "yarn build && yarn next export"
+yarn export
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+static app is exported to `out` directory.
 
-## Deploy on Vercel
+## LICENSE
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+MIT
