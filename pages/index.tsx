@@ -14,7 +14,7 @@ export default function Home() {
         />
         <meta name="twitter:title" content="nostalgic films" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="/twitter-card.png" />
+        <meta name="twitter:image" content="../public/twitter-card.png" />
       </Head>
       <Main />
     </div>
