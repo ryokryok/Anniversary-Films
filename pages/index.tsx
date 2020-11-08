@@ -12,9 +12,9 @@ export default function Home() {
           property="og:description"
           content="映画を公開月で探せるサイトです。映画のデータはTMDBより使用しています。"
         />
-        <meta property="twitter:title" content="nostalgic films" />
-        <meta property="twitter:card" content="app" />
-        <meta property="twitter:image" content="/twitter-card.png" />
+        <meta name="twitter:title" content="nostalgic films" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:image" content="/twitter-card.png" />
       </Head>
       <Main />
     </div>
