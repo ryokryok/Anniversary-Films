@@ -121,8 +121,20 @@ function MovieInfoModal({
         <div className="text-md mb-4">{overview}</div>
         <TmdbButton id={id} />
         <TweetButton movieData={movieData} />
+        <CloseButton buttonHandler={closeModal} />
       </div>
     </Modal>
+  );
+}
+
+function CloseButton({ buttonHandler }: { buttonHandler: () => void }) {
+  return (
+    <button
+      className="bg-red-500 hover:bg-red-700 text-white font-bold text-center p-2 my-2 rounded"
+      onClick={buttonHandler}
+    >
+      Close
+    </button>
   );
 }
 
