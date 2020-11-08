@@ -97,7 +97,7 @@ function MovieInfoModal({
   isModalOpen: boolean;
   closeModal: () => void;
 }) {
-  const { id, title, overview, release_date, backdrop_path, original_title } = movieData;
+  const { id, title, overview, release_date, backdrop_path, original_title, original_language } = movieData;
   Modal.setAppElement("#__next");
   return (
     <Modal
@@ -115,7 +115,7 @@ function MovieInfoModal({
 
         <div className="font-bold text-lg">{title}</div>
         <div className="text-md mb-2 text-gray-600">
-          {original_title} {`(${getOfficialCountryName(movieData.original_language)})`}
+          {original_title} {`(${getOfficialCountryName(original_language)})`}
         </div>
         <div className="text-gray-700 text-base mb-2">{`${formatFullDate(release_date)} 公開`}</div>
         <div className="text-md mb-4">{overview}</div>
