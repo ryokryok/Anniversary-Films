@@ -17,7 +17,7 @@ export function SearchForm({
     setMonth(event.target.value);
   }
   return (
-    <div className="flex justify-center py-2">
+    <div className="flex justify-center p-2">
       <form className="w-full max-w-sm">
         <div className="flex items-center border border-blue-500 py-2">
           <input
@@ -40,7 +40,7 @@ export function Gallery({ month }: { month: string }) {
 
   return (
     <div className="container mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 justify-items-auto">
         {data.results.map((md) => {
           return <MovieCard movieData={md} key={md.id} />;
         })}
@@ -75,7 +75,7 @@ function MovieCard({ movieData }: { movieData: MovieData }) {
       </div>
       <div className="p-2 md:p-4">
         <div className="font-bold text-lg mb-4">{title}</div>
-        <div className="text-gray-700 text-base">{formatFullDate(release_date)}</div>
+        <div className="absolute bottom-0 left-0 m-2 text-gray-700 text-base">{formatFullDate(release_date)}</div>
         <button
           className="absolute bottom-0 right-0 border-gray border-solid border-2 font-bold m-2 p-2 rounded shadow-lg"
           onClick={openModal}
@@ -97,18 +97,27 @@ function MovieInfoModal({
   isModalOpen: boolean;
   closeModal: () => void;
 }) {
-  const { id, title, overview, release_date, backdrop_path, original_title, original_language } = movieData;
+  const {
+    id,
+    title,
+    overview,
+    release_date,
+    backdrop_path,
+    poster_path,
+    original_title,
+    original_language,
+  } = movieData;
   Modal.setAppElement("#__next");
   return (
     <Modal
       isOpen={isModalOpen}
-      className="absolute"
+      className="absolute max-h-screen overflow-auto"
       overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex justify-center"
       onRequestClose={closeModal}
     >
       <div className="max-w-xl p-2 bg-white flex flex-col">
         <img
-          src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/original${backdrop_path ? backdrop_path : poster_path}`}
           alt={title}
           className="object-contain w-full mb-2"
         />
@@ -119,9 +128,11 @@ function MovieInfoModal({
         </div>
         <div className="text-gray-700 text-base mb-2">{`${formatFullDate(release_date)} 公開`}</div>
         <div className="text-md mb-4">{overview}</div>
-        <TmdbButton id={id} />
-        <TweetButton movieData={movieData} />
-        <CloseButton buttonHandler={closeModal} />
+        <div className="flex flex-col">
+          <TmdbButton id={id} />
+          <TweetButton movieData={movieData} />
+          <CloseButton buttonHandler={closeModal} />
+        </div>
       </div>
     </Modal>
   );
