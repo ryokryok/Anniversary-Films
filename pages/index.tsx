@@ -1,22 +1,29 @@
-import Head from "next/head";
-import { Main } from "../components/Main";
+import dayjs from "dayjs";
+import React from "react";
+import { SearchForm, Gallery } from "../components/Utils";
+import { SiteHead } from "../components/Seo";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  // default value is 5 years ago
+  const month =
+    (router.query.month as string) === undefined
+      ? dayjs().subtract(5, "year").format("YYYY-MM")
+      : (router.query.month as string);
+
+  function handleChangeMonth(event: React.ChangeEvent<HTMLInputElement>) {
+    event.preventDefault();
+    router.push({
+      pathname: "/",
+      query: { month: event.target.value },
+    });
+  }
   return (
     <div>
-      <Head>
-        <title>nostalgic films</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="nostalgic films" />
-        <meta
-          property="og:description"
-          content="映画を公開月で探せるサイトです。映画のデータはTMDBより使用しています。"
-        />
-        <meta name="twitter:title" content="nostalgic films" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="../public/twitter-card.png" />
-      </Head>
-      <Main />
+      <SiteHead />
+      <SearchForm month={month} handleChangeMonth={handleChangeMonth} />
+      <Gallery month={month} />
     </div>
   );
 }

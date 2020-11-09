@@ -7,15 +7,11 @@ import { MovieData, MovieDataResponse } from "../utils/types";
 
 export function SearchForm({
   month,
-  setMonth,
+  handleChangeMonth,
 }: {
   month: string;
-  setMonth: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeMonth: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
-    event.preventDefault();
-    setMonth(event.target.value);
-  }
   return (
     <div className="flex justify-center p-2">
       <form className="w-full max-w-sm">
@@ -24,7 +20,7 @@ export function SearchForm({
             className="appearance-none bg-transparent w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="month"
             value={month}
-            onChange={handleInput}
+            onChange={handleChangeMonth}
           />
         </div>
       </form>
