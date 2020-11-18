@@ -10,15 +10,19 @@ export function formatMonthDayDate(originalDate: string): string {
   return dayjs(originalDate).format("MM月DD日");
 }
 
-export function calcReleaseYear(date: string): string {
-  const resultYear = dayjs().year() - dayjs(date).year();
-  return resultYear === 0 ? "今年" : `${resultYear}年前`;
+export function calcReleaseYear(date: string): number {
+  return dayjs().year() - dayjs(date).year();
 }
 
 export function createTweetText(id: number, title: string, releaseDate: string): string {
-  return `https://twitter.com/intent/tweet?text=${title}は${calcReleaseYear(releaseDate)}の${formatMonthDayDate(
-    releaseDate
-  )}公開!&url=https://www.themoviedb.org/movie/${id}`;
+  const presentDate = dayjs();
+  if (dayjs(releaseDate).month() === presentDate.month() && dayjs(releaseDate).date() === presentDate.date()) {
+    /* prettier-ignore*/
+    return `https://twitter.com/intent/tweet?text=本日は${title}の公開${calcReleaseYear(releaseDate)}周年記念日です!&url=https://www.themoviedb.org/movie/${id}`;
+  } else {
+    /* prettier-ignore*/
+    return `https://twitter.com/intent/tweet?text=${title}は${calcReleaseYear(releaseDate) === 0 ? "今年" : `${calcReleaseYear(releaseDate)}年前` }の${formatMonthDayDate(releaseDate)}公開!&url=https://www.themoviedb.org/movie/${id}`
+  }
 }
 
 export function getOfficialCountryName(alpha2: string): string {

@@ -1,9 +1,7 @@
 import React from "react";
-import useSWR from "swr";
 import Modal from "react-modal";
-import { fetchAPI } from "../utils/api";
 import { createTweetText, formatFullDate, getOfficialCountryName } from "../utils/formatText";
-import { MovieData, MovieDataResponse } from "../utils/types";
+import { MovieData } from "../utils/types";
 import { useModal, useFetchMovieData } from "../utils/hooks";
 
 export function SearchForm({

@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div>
-      <SiteHead />
+      <SiteHead month={month} />
       <SearchForm month={month} handleChangeMonth={handleChangeMonth} />
       <Gallery month={month} />
     </div>

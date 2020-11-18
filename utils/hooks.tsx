@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import dayjs from "dayjs";
 import useSWR from "swr";
 import { fetchAPI } from "./api";
-import { MovieDataResponse, MovieData } from "./types";
-import { errors } from "../out/_next/static/chunks/main";
+import { MovieDataResponse } from "./types";
 
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +36,5 @@ export function useSelectMonth() {
 
 export function useFetchMovieData(month: string) {
   const { data, error } = useSWR<MovieDataResponse, any>(month, fetchAPI);
-  const { results, page, total_pages } = data;
-  return { data, results, page, total_pages, error };
+  return { data, error };
 }
