@@ -23,7 +23,7 @@ export function fetchAPI(month: string): Promise<MovieDataResponse> {
         page: 1,
         "release_date.gte": getStartDate(month),
         "release_date.lte": getEndDate(month),
-        with_release_type: decodeURI("1|2|3|4|5|6"),
+        with_release_type: decodeURI("1|2|3|4|5"),
       },
     })
     .then((res) => res.data);

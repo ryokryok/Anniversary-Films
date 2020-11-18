@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import useSWR from "swr";
+import React from "react";
 import Modal from "react-modal";
-import { fetchAPI } from "../utils/api";
 import { createTweetText, formatFullDate, getOfficialCountryName } from "../utils/formatText";
-import { MovieData, MovieDataResponse } from "../utils/types";
+import { MovieData } from "../utils/types";
+import { useModal, useFetchMovieData } from "../utils/hooks";
 
 export function SearchForm({
   month,
@@ -29,7 +28,7 @@ export function SearchForm({
 }
 
 export function Gallery({ month }: { month: string }) {
-  const { data, error } = useSWR<MovieDataResponse, any>(month, fetchAPI);
+  const { data, error } = useFetchMovieData(month);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -43,18 +42,6 @@ export function Gallery({ month }: { month: string }) {
       </div>
     </div>
   );
-}
-
-function useModal() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  function openModal() {
-    setIsModalOpen(true);
-  }
-  function closeModal() {
-    setIsModalOpen(false);
-  }
-
-  return { isModalOpen, openModal, closeModal };
 }
 
 function MovieCard({ movieData }: { movieData: MovieData }) {
