@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import { createTweetText, formatFullDate, getOfficialCountryName } from "../utils/formatText";
 import { MovieData } from "../utils/types";
-import { useModal, useFetchMovieData } from "../utils/hooks";
+import { useModal } from "../utils/hooks";
 
 export function SearchForm({
   month,
@@ -27,16 +27,11 @@ export function SearchForm({
   );
 }
 
-export function Gallery({ month }: { month: string }) {
-  const { data, error } = useFetchMovieData(month);
-
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
+export function Gallery({ data }: { data: MovieData[] }) {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 justify-items-auto">
-        {data.results.map((md) => {
+        {data.map((md) => {
           return <MovieCard movieData={md} key={md.id} />;
         })}
       </div>
@@ -48,25 +43,17 @@ function MovieCard({ movieData }: { movieData: MovieData }) {
   const { title, poster_path, release_date } = movieData;
   const { isModalOpen, openModal, closeModal } = useModal();
   return (
-    <div className="relative max-w-sm rounded overflow-hidden shadow-lg">
-      <div className="bg-gray-400">
+    <div className="flex flex-col justify-between items-stretch max-w-sm rounded overflow-hidden shadow-lg">
+      <div className="bg-gray-400" onClick={openModal}>
         <img
           src={`https://image.tmdb.org/t/p/original${poster_path}`}
           alt={title}
-          className="object-contain h-56 w-full text-center"
+          className="object-contain h-56 lg:h-64 w-full text-center"
         />
       </div>
-      <div className="p-2 md:p-4">
-        <div className="font-bold text-lg mb-4">{title}</div>
-        <div className="absolute bottom-0 left-0 m-2 text-gray-700 text-base">{formatFullDate(release_date)}</div>
-        <button
-          className="absolute bottom-0 right-0 border-gray border-solid border-2 font-bold m-2 p-2 rounded shadow-lg"
-          onClick={openModal}
-        >
-          Info
-        </button>
-        <MovieInfoModal movieData={movieData} isModalOpen={isModalOpen} closeModal={closeModal} />
-      </div>
+      <div className="align-top font-bold text-lg m-2">{title}</div>
+      <div className="text-gray-700 text-base text-right text-bottom m-2">{formatFullDate(release_date)}</div>
+      <MovieInfoModal movieData={movieData} isModalOpen={isModalOpen} closeModal={closeModal} />
     </div>
   );
 }
