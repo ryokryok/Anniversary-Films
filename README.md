@@ -2,7 +2,7 @@
 
 This is my project app, search anniversary films by date.
 
-[App Page(Japanese)](https://blissful-ramanujan-31cbd0.netlify.app/)
+[App Page(Japanese)](https://nostalgic-films.netlify.app/)
 
 ## Getting Started
 
