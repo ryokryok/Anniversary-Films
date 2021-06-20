@@ -1,8 +1,15 @@
 import type { AppProps /*, AppContext */ } from "next/app";
-import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
+import { Header, Footer } from "../components/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+      <Footer />
+    </>
+  );
 }
 
 export default MyApp;

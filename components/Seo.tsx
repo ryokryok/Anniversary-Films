@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { formatFullDate } from "../utils/formatText";
+import { formatFullDate } from "../lib/formatText";
 interface HeadProps {
   month: string;
 }

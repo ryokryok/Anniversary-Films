@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchForm, Gallery } from "../components/Utils";
 import { SiteHead } from "../components/Seo";
-import { useFetchMovieData, useSelectMonth } from "../utils/hooks";
+import { useFetchMovieData, useSelectMonth } from "../lib/hooks";
 
 export default function Home() {
   const { month, handleChangeMonth } = useSelectMonth();
