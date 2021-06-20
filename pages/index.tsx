@@ -11,7 +11,13 @@ export default function Home() {
     <div>
       <SiteHead month={month} />
       <SearchForm month={month} handleChangeMonth={handleChangeMonth} />
-      {error ? <div>failed to load</div> : !data ? <div>loading...</div> : <Gallery data={data.results} />}
+      {error ? (
+        <div>failed to load</div>
+      ) : !data ? (
+        <div>loading...</div>
+      ) : (
+        <Gallery data={data.results} />
+      )}
     </div>
   );
 }
