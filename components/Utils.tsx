@@ -4,9 +4,9 @@ import {
   createTweetText,
   formatFullDate,
   getOfficialCountryName,
-} from "../utils/formatText";
-import { MovieData } from "../utils/types";
-import { useModal } from "../utils/hooks";
+} from "../lib/formatText";
+import { MovieData } from "../lib/types";
+import { useModal } from "../lib/hooks";
 
 type SearchFormProps = {
   month: string;
