@@ -8,13 +8,12 @@ import {
 import { MovieData } from "../utils/types";
 import { useModal } from "../utils/hooks";
 
-export function SearchForm({
-  month,
-  handleChangeMonth,
-}: {
+type SearchFormProps = {
   month: string;
   handleChangeMonth: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+};
+
+export function SearchForm({ month, handleChangeMonth }: SearchFormProps) {
   return (
     <div className="flex justify-center p-2">
       <form className="w-full max-w-sm">
@@ -31,7 +30,11 @@ export function SearchForm({
   );
 }
 
-export function Gallery({ data }: { data: MovieData[] }) {
+type GalleryProps = {
+  data: MovieData[];
+};
+
+export function Gallery({ data }: GalleryProps) {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 justify-items-auto">
@@ -43,7 +46,11 @@ export function Gallery({ data }: { data: MovieData[] }) {
   );
 }
 
-function MovieCard({ movieData }: { movieData: MovieData }) {
+type MovieCardProps = {
+  movieData: MovieData;
+};
+
+function MovieCard({ movieData }: MovieCardProps) {
   const { title, poster_path, release_date } = movieData;
   const { isModalOpen, openModal, closeModal } = useModal();
   return (
@@ -68,15 +75,17 @@ function MovieCard({ movieData }: { movieData: MovieData }) {
   );
 }
 
+type MovieInfoModalProps = {
+  movieData: MovieData;
+  isModalOpen: boolean;
+  closeModal: () => void;
+};
+
 function MovieInfoModal({
   movieData,
   isModalOpen,
   closeModal,
-}: {
-  movieData: MovieData;
-  isModalOpen: boolean;
-  closeModal: () => void;
-}) {
+}: MovieInfoModalProps) {
   const {
     id,
     title,
@@ -122,7 +131,11 @@ function MovieInfoModal({
   );
 }
 
-function CloseButton({ buttonHandler }: { buttonHandler: () => void }) {
+type CloseButtonProps = {
+  buttonHandler: () => void;
+};
+
+function CloseButton({ buttonHandler }: CloseButtonProps) {
   return (
     <button
       className="bg-red-500 hover:bg-red-700 text-white font-bold text-center p-2 my-2 rounded"
@@ -133,7 +146,11 @@ function CloseButton({ buttonHandler }: { buttonHandler: () => void }) {
   );
 }
 
-function TmdbButton({ id }: { id: number }) {
+type TmdbButtonProps = {
+  id: number;
+};
+
+function TmdbButton({ id }: TmdbButtonProps) {
   return (
     <a
       href={`https://www.themoviedb.org/movie/${id}`}
@@ -146,14 +163,18 @@ function TmdbButton({ id }: { id: number }) {
   );
 }
 
-function TweetButton({ movieData }: { movieData: MovieData }) {
+type TweetButtonProps = {
+  movieData: MovieData;
+};
+
+function TweetButton({ movieData }: TweetButtonProps) {
   const { id, title, release_date } = movieData;
   return (
     <a
       href={createTweetText(id, title, release_date)}
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-center p-2 rounded"
     >
-      tweet
+      Tweet
     </a>
   );
 }
