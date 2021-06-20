@@ -1,6 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
-import { createTweetText, formatFullDate, getOfficialCountryName } from "../utils/formatText";
+import {
+  createTweetText,
+  formatFullDate,
+  getOfficialCountryName,
+} from "../utils/formatText";
 import { MovieData } from "../utils/types";
 import { useModal } from "../utils/hooks";
 
@@ -52,8 +56,14 @@ function MovieCard({ movieData }: { movieData: MovieData }) {
         />
       </div>
       <div className="align-top font-bold text-lg m-2">{title}</div>
-      <div className="text-gray-700 text-base text-right text-bottom m-2">{formatFullDate(release_date)}</div>
-      <MovieInfoModal movieData={movieData} isModalOpen={isModalOpen} closeModal={closeModal} />
+      <div className="text-gray-700 text-base text-right text-bottom m-2">
+        {formatFullDate(release_date)}
+      </div>
+      <MovieInfoModal
+        movieData={movieData}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+      />
     </div>
   );
 }
@@ -87,7 +97,9 @@ function MovieInfoModal({
     >
       <div className="max-w-xl p-2 bg-white flex flex-col">
         <img
-          src={`https://image.tmdb.org/t/p/original${backdrop_path ? backdrop_path : poster_path}`}
+          src={`https://image.tmdb.org/t/p/original${
+            backdrop_path ? backdrop_path : poster_path
+          }`}
           alt={title}
           className="object-contain w-full mb-2"
         />
@@ -96,7 +108,9 @@ function MovieInfoModal({
         <div className="text-md mb-2 text-gray-600">
           {original_title} {`(${getOfficialCountryName(original_language)})`}
         </div>
-        <div className="text-gray-700 text-base mb-2">{`${formatFullDate(release_date)} 公開`}</div>
+        <div className="text-gray-700 text-base mb-2">{`${formatFullDate(
+          release_date
+        )} 公開`}</div>
         <div className="text-md mb-4">{overview}</div>
         <div className="flex flex-col">
           <TmdbButton id={id} />

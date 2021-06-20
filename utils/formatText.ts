@@ -14,9 +14,16 @@ export function calcReleaseYear(date: string): number {
   return dayjs().year() - dayjs(date).year();
 }
 
-export function createTweetText(id: number, title: string, releaseDate: string): string {
+export function createTweetText(
+  id: number,
+  title: string,
+  releaseDate: string
+): string {
   const presentDate = dayjs();
-  if (dayjs(releaseDate).month() === presentDate.month() && dayjs(releaseDate).date() === presentDate.date()) {
+  if (
+    dayjs(releaseDate).month() === presentDate.month() &&
+    dayjs(releaseDate).date() === presentDate.date()
+  ) {
     /* prettier-ignore*/
     return `https://twitter.com/intent/tweet?text=本日は${title}の公開${calcReleaseYear(releaseDate)}周年記念日です!&url=https://www.themoviedb.org/movie/${id}`;
   } else {

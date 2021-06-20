@@ -10,7 +10,10 @@ export function SiteHead({ month }: HeadProps) {
       <title>nostalgic films</title>
       <link rel="icon" href="/favicon.ico" />
       {month ? (
-        <meta property="og:title" content={`${formatFullDate(month)}公開映画 | nostalgic films`} />
+        <meta
+          property="og:title"
+          content={`${formatFullDate(month)}公開映画 | nostalgic films`}
+        />
       ) : (
         <meta property="og:title" content="nostalgic films" />
       )}

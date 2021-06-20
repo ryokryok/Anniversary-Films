@@ -20,7 +20,6 @@ mv .env.sample .env.local
 NEXT_PUBLIC_TMDB_API_KEY=<input your api key>
 ```
 
-
 ### Dev server
 
 First, run the development server:
@@ -32,7 +31,6 @@ yarn dev
 ```
 
 [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ### Static Export
 
